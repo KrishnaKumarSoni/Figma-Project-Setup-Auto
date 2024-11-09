@@ -24,8 +24,11 @@ Build a Figma plugin that takes various brand and design inputs, then automates 
 
 ### 2. **Data Handling and Preprocessing**
    - Store and validate user inputs temporarily before use.
-   - Convert and format color presets, font choices, and other stylistic settings into a structured JSON that can be referenced throughout the plugin.
-   - Parse and sanitize uploaded logo and branding assets to prepare them for use in the frames.
+   - Convert and format color presets:
+     - HEX to RGB conversion for Figma compatibility
+     - Color validation and sanitization
+   - Font choices and other stylistic settings into a structured JSON
+   - Parse and sanitize uploaded logo and branding assets
 
    **Data Flow:**
    - **Input → JSON Configuration**: Convert all user inputs into a JSON config to pass into the Figma canvas generation logic.
@@ -39,16 +42,12 @@ Build a Figma plugin that takes various brand and design inputs, then automates 
    - **Config Data → GPT-4o API**: Send the brand tone guidelines to GPT-4o, receive suggested text, and use it to auto-populate copy fields in Figma frames.
 
 ### 4. **Page and Frame Setup in Figma**
-   - **Page Structure**: Create pages based on design type (e.g., “Mobile App UI” page, “Web App Layout” page).
+   - **Layout Presets**:
+     - Mobile First: 375x812 (iPhone dimensions)
+     - Web First: 1440x900 (Desktop dimensions)
    - **Frame Setup**:
-     - Use layout presets for mobile-first or web-first configurations.
-     - Set up frames based on selected theme presets (corner radius, shadows).
-     - Label frames in big text (e.g., "Homepage," "Profile Screen") for easy reference.
-     - Use placeholders for images, text blocks, etc., that can be later customized.
-
-   **Flow**:
-   - **Page → Frame Creation**: Dynamically create pages and frames based on design type and layout preferences.
-   - **Frame Labeling**: Use input data (like page names and descriptions) to set large text labels.
+     - Automatic naming convention: "{layout} - {designType}"
+     - Dynamic resizing based on layout choice
 
 ### 5. **Auto-populate Color, Fonts, and Theme Styles**
    - Apply **Color Presets** to backgrounds, accents, and text elements.
@@ -64,6 +63,9 @@ Build a Figma plugin that takes various brand and design inputs, then automates 
 
    **Flow**:
    - **Position Logo/Assets**: Insert logo at prominent locations and set an appropriate size based on the frame.
+
+### 7. **Variable Management**
+   - Support for variable scopes:
 
 ---
 
